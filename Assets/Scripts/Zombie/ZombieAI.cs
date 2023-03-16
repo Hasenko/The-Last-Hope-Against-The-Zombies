@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,8 +10,9 @@ public class ZombieAI : MonoBehaviour
 {
     private NavMeshAgent zombie = null;
     [SerializeField] private Transform target;
-    public Animator animator;
-    public float zombie_speed = 1.0f;
+    Animator animator;
+    public float zombie_speed = 1;
+    public float zombieViewRange = 15;
 
     // Start is called before the first frame update
     private void Start()
@@ -22,23 +24,25 @@ public class ZombieAI : MonoBehaviour
     {
         MoveToTarget();
     }
+
     private void MoveToTarget ()
     {
         animator.SetInteger("Distance", (int) Vector3.Distance(transform.position, target.position));
 
-        if (Vector3.Distance(transform.position, target.position) >= 15)
+        if (Vector3.Distance(transform.position, target.position) >= zombieViewRange)
         {
-            zombie_speed = 1.0f;
+            zombie_speed = 1;
         }
-        else if (Vector3.Distance(transform.position, target.position) < 15 && Vector3.Distance(transform.position, target.position) >= 10)
+        else if (Vector3.Distance(transform.position, target.position) < zombieViewRange && Vector3.Distance(transform.position, target.position) >= (zombieViewRange/100 * ((100/3) * 2)))
         {
-            zombie_speed = 3.0f;
+            zombie_speed = 3;
         }
-        else if (Vector3.Distance(transform.position, target.position) < 10)
+        else if (Vector3.Distance(transform.position, target.position) < (zombieViewRange / 100 * ((100 / 3) * 2)))
         {
-            zombie_speed = 5.0f;
+            zombie_speed = 5;
+
         }
-        if (Vector3.Distance(transform.position, target.position) < 15)
+        if (Vector3.Distance(transform.position, target.position) < zombieViewRange)
         {
             zombie.SetDestination(target.position);
             zombie.speed = zombie_speed;
