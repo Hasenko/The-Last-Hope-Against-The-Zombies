@@ -29,5 +29,10 @@ public class PlayerStats : CharacterStats
         {
             TakeDamage(10);
         }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            Heal(10);
+        }
     }
 }
