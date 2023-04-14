@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -16,6 +17,7 @@ public class Gun : MonoBehaviour
     {
         Player_Shoot.shootInput += Shoot;
         Player_Shoot.reloadInput += StartReload;
+        gunData.Current_Ammo = gunData.Magazine_Size;
     }
 
     private void OnDisable() => gunData.Reloading = false;
@@ -49,11 +51,17 @@ public class Gun : MonoBehaviour
                 {
                     IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
                     damageable?.TakeDamage(gunData.Damage);
+
+                    // Si le joueur vise un zombie et tire
+                    if (hitInfo.transform.tag == "Enemy")
+                    {
+                        CharacterStats enemyStats = hitInfo.transform.GetComponent<CharacterStats>();
+                        enemyStats.TakeDamage(gunData.Damage);
+                    }
                 }
 
                 gunData.Current_Ammo--;
                 timeSinceLastShot = 0;
-                OnGunShot();
             }
         }
     }
@@ -64,6 +72,4 @@ public class Gun : MonoBehaviour
 
         Debug.DrawRay(Muzzle.position, Muzzle.forward * gunData.Max_Distance);
     }
-
-    private void OnGunShot() { }
 }

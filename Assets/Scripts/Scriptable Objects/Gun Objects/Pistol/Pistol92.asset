@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pistol92
   m_EditorClassIdentifier: 
   name: Pistol 92
-  Damage: 15
+  Damage: 5
   Max_Distance: 150
-  Current_Ammo: 14
+  Current_Ammo: 13
   Magazine_Size: 16
   Fire_Rate: 250
   Reload_Time: 1.5
