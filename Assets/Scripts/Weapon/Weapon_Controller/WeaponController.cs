@@ -8,6 +8,7 @@ public class WeaponController : MonoBehaviour {
     public Weapon[] weaponList;
 
     private Weapon currentWeapon;
+    private int currentWeaponIndex = 0;
 
     void Start()
     {
@@ -15,7 +16,21 @@ public class WeaponController : MonoBehaviour {
         {
             EquipWeapon(0);
         }
+    }
 
+    void Update()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0f)
+        {
+            currentWeaponIndex = 1;
+            EquipWeapon(currentWeaponIndex);
+        }
+        else if (scroll < 0f)
+        {
+            currentWeaponIndex = 0;
+            EquipWeapon(currentWeaponIndex);
+        }
     }
 
     private void EquipWeapon(int index)

@@ -8,7 +8,9 @@ public class Weapon : MonoBehaviour
 
     public float range = 100f;
     public float shotDelay = 0.2f;
-    public Transform Muzzle;
+    public Transform muzzlePoint;
+    public GameObject impactPrefab;
+    public GameObject smokePrefab;
 
     private float timer = 0f;
 
@@ -28,7 +30,12 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(ray, out hit, range))
             {
                 Debug.Log("Tir sur :" + hit.collider.name);
+                GameObject go = Instantiate(impactPrefab, hit.point, Quaternion.identity) as GameObject;
+                Destroy(go.gameObject, 3f);
+
+                GameObject smokey = Instantiate(smokePrefab, hit.point, Quaternion.identity) as GameObject;
             }
+
             else
             {
                 Debug.Log("Tir dans le vide");
