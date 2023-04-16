@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -30,6 +31,12 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(ray, out hit, range))
             {
                 Debug.Log("Tir sur :" + hit.collider.name);
+                // Si le joueur vise un zombie et tire
+                if (hit.transform.tag == "Enemy")
+                {
+                    CharacterStats enemyStats = hit.transform.GetComponent<CharacterStats>();
+                    enemyStats.TakeDamage(3);
+                }
                 GameObject go = Instantiate(impactPrefab, hit.point, Quaternion.identity) as GameObject;
                 Destroy(go.gameObject, 3f);
 
