@@ -41,6 +41,7 @@ public class Weapon : MonoBehaviour
                 Destroy(go.gameObject, 3f);
 
                 GameObject smokey = Instantiate(smokePrefab, hit.point, Quaternion.identity) as GameObject;
+                Destroy(smokey.gameObject, 1f);
             }
 
             else
