@@ -536,10 +536,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 50
-  shotDelay: 0.5
+  shotDelay: 0.6
   muzzlePoint: {fileID: 2795953586900895895}
   impactPrefab: {fileID: 1404200745246544, guid: 068381675912eb044a912de01e17f9cd, type: 3}
-  smokePrefab: {fileID: 104829970813648393, guid: d3015b7eea383f64d8b81f965cc466e7, type: 3}
+  smokePrefab: {fileID: 1028632426529218769, guid: 434c8a32da22cfd49aa1b263e63d6db9, type: 3}
 --- !u!1 &8895486034189350334
 GameObject:
   m_ObjectHideFlags: 0
