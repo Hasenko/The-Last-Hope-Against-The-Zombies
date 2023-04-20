@@ -37,11 +37,14 @@ public class Weapon : MonoBehaviour
                     CharacterStats enemyStats = hit.transform.GetComponent<CharacterStats>();
                     enemyStats.TakeDamage(3);
                 }
-                GameObject go = Instantiate(impactPrefab, hit.point, Quaternion.identity) as GameObject;
-                Destroy(go.gameObject, 3f);
+                else
+                {
+                    GameObject go = Instantiate(impactPrefab, hit.point, Quaternion.identity) as GameObject;
+                    Destroy(go.gameObject, 3f);
 
-                GameObject smokey = Instantiate(smokePrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
-                Destroy(smokey.gameObject, 1f);
+                    GameObject smokey = Instantiate(smokePrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
+                    Destroy(smokey.gameObject, 1f);
+                }
             }
 
             else
