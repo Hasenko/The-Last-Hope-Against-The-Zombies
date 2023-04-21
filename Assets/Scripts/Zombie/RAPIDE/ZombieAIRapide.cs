@@ -55,6 +55,14 @@ public class ZombieAIRapide : MonoBehaviour
             }
         }
 
+        if (ZombieRapideDead())
+        {
+            zombie.speed = 0;
+            anim.Play("die");
+            Debug.Log("Zombie rapide dead");
+            Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
+        }
+
         anim.SetFloat("Speed", stats.actualSpeed);
     }
 
@@ -70,6 +78,12 @@ public class ZombieAIRapide : MonoBehaviour
         anim = GetComponent<Animator>();
         stats = GetComponent<ZombieRapideStats>();
     }
-
-
+    private bool ZombieRapideDead()
+    {
+        if (stats.isZombieRapideDead())
+        {
+            return true;
+        }
+        return false;
+    }
 }

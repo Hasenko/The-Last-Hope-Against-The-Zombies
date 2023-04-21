@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieNormalStats : CharacterStats
 {
@@ -9,9 +10,13 @@ public class ZombieNormalStats : CharacterStats
     [SerializeField] public float actualSpeed;
     [SerializeField] public float defaultSpeed;
 
+    private Animator anim;
+
+
     private void Start()
     {
         InitVariables();
+        GetReference();
     }
     public void DealDamage(CharacterStats statsToDamage)
     {
@@ -22,7 +27,13 @@ public class ZombieNormalStats : CharacterStats
     public override void Die()
     {
         base.Die();
-        Destroy(gameObject);
+    }
+
+    public bool isZombieNormalDead()
+    {
+        if (base.isDead)
+            return true;
+        return false;
     }
 
     public override void InitVariables()
@@ -37,4 +48,9 @@ public class ZombieNormalStats : CharacterStats
         defaultSpeed = 2f;
         actualSpeed = defaultSpeed;
     }
+    private void GetReference()
+    {
+        anim = anim.GetComponent<Animator>();
+    }
+
 }

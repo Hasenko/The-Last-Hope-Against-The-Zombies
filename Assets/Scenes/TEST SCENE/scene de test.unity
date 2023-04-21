@@ -190,7 +190,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 02c07345313cb814eb6dcd63462e338a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1741,6 +1741,7 @@ MonoBehaviour:
   weaponList:
   - {fileID: 4910037490579392782, guid: caf5fdef8de324f41b6066cbe51dbfb0, type: 3}
   - {fileID: 279099018385108009, guid: ce3d8b682f87bef4995a2e030c550692, type: 3}
+  blood: {fileID: 5724322442304671901, guid: ef9a8243525f38d4ba54fec5372ed86d, type: 3}
 --- !u!114 &1515388541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2163,7 +2164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 053356d265f0eb8469318125bba20044, type: 2}
+  - {fileID: 2100000, guid: ce27d762ab6fc134aa497f3470cefbb3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -22,7 +22,13 @@ public class ZombieRapideStats : CharacterStats
     public override void Die()
     {
         base.Die();
-        Destroy(gameObject);
+    }
+
+    public bool isZombieRapideDead()
+    {
+        if (base.isDead)
+            return true;
+        return false;
     }
 
     public override void InitVariables()

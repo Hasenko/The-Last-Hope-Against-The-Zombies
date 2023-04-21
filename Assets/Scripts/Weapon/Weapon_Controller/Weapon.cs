@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.Burst.CompilerServices;
+using Unity.Mathematics;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -12,6 +14,8 @@ public class Weapon : MonoBehaviour
     public Transform muzzlePoint;
     public GameObject impactPrefab;
     public GameObject smokePrefab;
+
+    public GameObject bloodPrefab;
 
     private float timer = 0f;
 
@@ -32,10 +36,14 @@ public class Weapon : MonoBehaviour
             {
                 Debug.Log("Tir sur :" + hit.collider.name);
                 // Si le joueur vise un zombie et tire
-                if (hit.transform.tag == "Enemy")
+                if (hittingEnemy(hit))
                 {
                     CharacterStats enemyStats = hit.transform.GetComponent<CharacterStats>();
                     enemyStats.TakeDamage(3);
+
+                    // Particule de sang
+
+                    SpawnBloodParticules(hit.point, hit);
                 }
                 else
                 {
@@ -56,9 +64,20 @@ public class Weapon : MonoBehaviour
         }       
     }
 
+    private bool hittingEnemy(RaycastHit hit)
+    {
+        if (hit.transform.tag == "Enemy")
+            return true;
+        return false;
+    }
+
     public void Reload()
     {
 
     }
-
+    private void SpawnBloodParticules(Vector3 position, RaycastHit hit)
+    {
+        GameObject bloodey = Instantiate(bloodPrefab, position, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
+        Destroy(bloodey.gameObject, 0.5f);
+    }
 }

@@ -23,7 +23,12 @@ public class ZombieTankyStats : CharacterStats
     public override void Die()
     {
         base.Die();
-        Destroy(gameObject);
+    }
+    public bool isZombieTankyDead()
+    {
+        if (base.isDead)
+            return true;
+        return false;
     }
 
     public override void InitVariables()

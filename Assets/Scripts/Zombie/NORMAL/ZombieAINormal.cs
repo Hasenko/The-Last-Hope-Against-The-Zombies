@@ -12,7 +12,7 @@ public class ZombieAINormal : MonoBehaviour
     private NavMeshAgent zombie = null;
     [SerializeField] private Transform target;
     private ZombieNormalStats stats = null;
-    Animator anim;
+    private Animator anim;
     public float zombieViewRange = 15;
     private float timeOfLastAttack = 0;
     // Start is called before the first frame update
@@ -55,6 +55,13 @@ public class ZombieAINormal : MonoBehaviour
             }
         }
 
+        if (ZombieNormalDead())
+        {
+            zombie.speed = 0;
+            anim.Play("die");
+            Debug.Log("Zombie normal dead");
+            Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
+        }
         anim.SetFloat("Speed", stats.actualSpeed);
     }
 
@@ -71,5 +78,13 @@ public class ZombieAINormal : MonoBehaviour
         stats = GetComponent<ZombieNormalStats>();
     }
 
+    private bool ZombieNormalDead()
+    {
+        if (stats.isZombieNormalDead())
+        {
+            return true;
+        }
+        return false;
+    }
 
 }

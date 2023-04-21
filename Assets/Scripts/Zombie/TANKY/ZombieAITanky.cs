@@ -54,6 +54,14 @@ public class ZombieAITanky : MonoBehaviour
             }
         }
 
+        if (ZombieTankyDead())
+        {
+            zombie.speed = 0;
+            anim.Play("die");
+            Debug.Log("Zombie rapide dead");
+            Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
+
+        }
         anim.SetFloat("Speed", stats.actualSpeed);
     }
 
@@ -68,6 +76,14 @@ public class ZombieAITanky : MonoBehaviour
         zombie = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         stats = GetComponent<ZombieTankyStats>();
+    }
+    private bool ZombieTankyDead()
+    {
+        if (stats.isZombieTankyDead())
+        {
+            return true;
+        }
+        return false;
     }
 
 }
