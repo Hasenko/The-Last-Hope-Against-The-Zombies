@@ -8,6 +8,7 @@ public class menu : MonoBehaviour
     //charger la scene
     public void Play()
     {
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     //quiter le jeu
