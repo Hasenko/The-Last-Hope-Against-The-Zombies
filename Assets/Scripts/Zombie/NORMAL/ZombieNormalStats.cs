@@ -24,10 +24,6 @@ public class ZombieNormalStats : CharacterStats
         statsToDamage.TakeDamage(damage);
     }
 
-    public override void Die()
-    {
-        base.Die();
-    }
 
     public bool isZombieNormalDead()
     {

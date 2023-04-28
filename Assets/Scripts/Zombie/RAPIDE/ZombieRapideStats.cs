@@ -19,11 +19,6 @@ public class ZombieRapideStats : CharacterStats
         statsToDamage.TakeDamage(damage);
     }
 
-    public override void Die()
-    {
-        base.Die();
-    }
-
     public bool isZombieRapideDead()
     {
         if (base.isDead)

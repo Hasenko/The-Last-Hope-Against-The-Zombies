@@ -20,10 +20,6 @@ public class ZombieTankyStats : CharacterStats
         statsToDamage.TakeDamage(damage);
     }
 
-    public override void Die()
-    {
-        base.Die();
-    }
     public bool isZombieTankyDead()
     {
         if (base.isDead)

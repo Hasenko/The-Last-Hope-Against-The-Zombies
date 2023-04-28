@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.Burst.CompilerServices;
 using Unity.Mathematics;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour

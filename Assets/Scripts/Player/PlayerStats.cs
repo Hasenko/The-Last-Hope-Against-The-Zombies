@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : CharacterStats
 {
@@ -21,6 +22,13 @@ public class PlayerStats : CharacterStats
     {
         base.CheckHealth();
         hud.UpdateHealth(health, maxHealth);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        SceneManager.LoadScene("death menu", LoadSceneMode.Single);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
