@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5845532860711755215}
   - component: {fileID: 608713664601503087}
   - component: {fileID: 8286941145790614501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7762728492655103772}
   - component: {fileID: 2681898044520495471}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: muzzleflash_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2795953586900895895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7898001362544029921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Extractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,13 +239,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1890702137177224130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MuzzleFlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1890702137177224130
 Transform:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5919818287020876058}
   - component: {fileID: 7142362544438390049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: muzzleflash_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2086063939477506918}
   - component: {fileID: 5534686531836247068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: muzzleflash_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 3400344460654119509}
   - component: {fileID: 6851509119675684199}
   - component: {fileID: 3981287978164339221}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8895486033541263489}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 8895486034189117840}
   - component: {fileID: 8895486034192509362}
   - component: {fileID: 8895486034191543154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 8895486034189117842}
   - component: {fileID: 8895486034192509364}
   - component: {fileID: 8895486034191543156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 8895486034189117844}
   - component: {fileID: 8895486034192509366}
   - component: {fileID: 8895486034191543158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -818,7 +818,9 @@ GameObject:
   - component: {fileID: 8895486034189117846}
   - component: {fileID: 4910037490579392782}
   - component: {fileID: 6661292099483676934}
-  m_Layer: 0
+  - component: {fileID: -5736996762358050688}
+  - component: {fileID: 7769827062435948606}
+  m_Layer: 8
   m_Name: Weapon_Pistolet_92
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,6 +859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 15
   shotDelay: 0.6
+  reloadTime: 2
   muzzlePoint: {fileID: 2795953586900895895}
   extractorPoint: {fileID: 7898001362544029921}
   impactPrefab: {fileID: 1404200745246544, guid: 068381675912eb044a912de01e17f9cd, type: 3}
@@ -886,7 +889,123 @@ MonoBehaviour:
   - {fileID: 1084550010, guid: 8de718e28a3fa8943b815fe6c114bd14, type: 3}
   flashSpriteRenderer1: {fileID: 5534686531836247068}
   flashSpriteRenderer2: {fileID: 7142362544438390049}
+  shootSounds:
+  - {fileID: 8300000, guid: 75c150b93b4fcb94385f60e874b8f14c, type: 3}
+  reloadSound: {fileID: 8300000, guid: 103906859d9813e44b25441199178973, type: 3}
   duration: 0.1
+--- !u!82 &-5736996762358050688
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895486034189350326}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7824538405452189545, guid: 6205771dea0f0554b8662dd1a11733d0, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!111 &7769827062435948606
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895486034189350326}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 0a9e86e118b8af047853de2363c28319, type: 2}
+  - {fileID: 7400000, guid: 321ee880ac78bdf4f9add480d85b6987, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &8895486034189350334
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +1017,7 @@ GameObject:
   - component: {fileID: 8895486034189117854}
   - component: {fileID: 8895486034192509360}
   - component: {fileID: 8895486034191543152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour {
     public Weapon[] weaponList;
 
     public Weapon currentWeapon;
-    private int currentWeaponIndex = 0;
+    public int currentWeaponIndex = 0;
 
     public PlayerHUD hud;
 

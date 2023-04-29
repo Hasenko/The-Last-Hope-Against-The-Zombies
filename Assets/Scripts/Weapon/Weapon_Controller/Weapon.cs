@@ -5,12 +5,13 @@ using Unity.Burst.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 
-
+[RequireComponent (typeof(WeaponFX))]
 public class Weapon : MonoBehaviour
 {
 
     public float range = 100f;
     public float shotDelay = 0.2f;
+    public float reloadTime = 2f;
     public Transform muzzlePoint;
     public Transform extractorPoint;
     public GameObject impactPrefab;
@@ -25,12 +26,12 @@ public class Weapon : MonoBehaviour
     public GameObject bloodPrefab;
 
     private float timer = 0f;
-    private MuzzleFlash muzzleFlashScript;
+    private WeaponFX weaponFX;
 
     private void Start()
     {
         timer = Time.time;
-        muzzleFlashScript = GetComponent<MuzzleFlash>();
+        weaponFX = GetComponent<WeaponFX>();
     }
 
     public void Shoot()
@@ -62,7 +63,7 @@ public class Weapon : MonoBehaviour
                     Destroy(smokey.gameObject, 1f);
                 }
             }
-            muzzleFlashScript.Displat();
+            weaponFX.ShootFX();
             GameObject tmp = (GameObject)Instantiate(bulletCase, extractorPoint.position, extractorPoint.rotation);
             Rigidbody rb = tmp.GetComponent<Rigidbody>();
             rb.AddForce(Vector3.forward * 3f);
@@ -102,8 +103,19 @@ public class Weapon : MonoBehaviour
                     }
                 }
 
-                //jouer un son/animation de rechargement
-                timer = Time.time + 2f;
+                if(maxAmmoInClip == 30)
+                {
+                    //jouer un son/animation de rechargement
+                    weaponFX.ReloadFX();
+                    timer = Time.time + reloadTime + 0.3f;
+                }
+                else if(maxAmmoInClip == 16)
+                {
+                    //jouer un son/animation de rechargement
+                    weaponFX.PistolReloadFX();
+                    timer = Time.time + reloadTime + 0.3f;
+                }
+                
             }
         }
     }
