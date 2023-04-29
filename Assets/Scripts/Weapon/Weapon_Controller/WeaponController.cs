@@ -7,7 +7,7 @@ public class WeaponController : MonoBehaviour {
     public Transform weaponHold;
     public Weapon[] weaponList;
 
-    private Weapon currentWeapon;
+    public Weapon currentWeapon;
     private int currentWeaponIndex = 0;
 
     void Start()

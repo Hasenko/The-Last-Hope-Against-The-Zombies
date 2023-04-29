@@ -3272,6 +3272,7 @@ MonoBehaviour:
   weaponList:
   - {fileID: 4910037490579392782, guid: caf5fdef8de324f41b6066cbe51dbfb0, type: 3}
   - {fileID: 279099018385108009, guid: ce3d8b682f87bef4995a2e030c550692, type: 3}
+  currentWeapon: {fileID: 0}
 --- !u!114 &237753001
 MonoBehaviour:
   m_ObjectHideFlags: 0

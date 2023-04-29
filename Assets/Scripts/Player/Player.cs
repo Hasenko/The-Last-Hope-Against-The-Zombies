@@ -38,6 +38,10 @@ public class Player : MonoBehaviour
         {
             weaponController.FireWeapon();
         }
+        if (Input.GetKey(KeyCode.R))
+        {
+            weaponController.currentWeapon.Reload();
+        }
 
         GetAimInfo();
     }
