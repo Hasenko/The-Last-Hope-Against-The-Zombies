@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        if(Time.time > timer && currentAmmoInClip > 0)
+        if (Time.time > timer && currentAmmoInClip > 0)
         {
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
@@ -43,8 +43,6 @@ public class Weapon : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, range))
             {
-                Debug.Log("Tir sur :" + hit.collider.name);
-
                 // Si le joueur vise un zombie et tire
                 if (hittingEnemy(hit))
                 {
@@ -63,11 +61,6 @@ public class Weapon : MonoBehaviour
                     GameObject smokey = Instantiate(smokePrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
                     Destroy(smokey.gameObject, 1f);
                 }
-            }
-
-            else
-            {
-                Debug.Log("Tir dans le vide");
             }
             muzzleFlashScript.Displat();
             GameObject tmp = (GameObject)Instantiate(bulletCase, extractorPoint.position, extractorPoint.rotation);
@@ -90,12 +83,13 @@ public class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        if(Time.time > timer)
+        if (Time.time > timer)
         {
             if(currentAmmoInClip < maxAmmoInClip && currentAmmoReserve > 0)
             {
-                //tant qu'il y a de la place dans le chargeur 
-                while(currentAmmoInClip < maxAmmoInClip)
+                //tant qu'il y a de la place dans le chargeur
+
+                while (currentAmmoInClip < maxAmmoInClip)
                 {
                     if(currentAmmoReserve > 0)
                     {

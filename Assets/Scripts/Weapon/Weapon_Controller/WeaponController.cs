@@ -10,12 +10,18 @@ public class WeaponController : MonoBehaviour {
     public Weapon currentWeapon;
     private int currentWeaponIndex = 0;
 
+    public PlayerHUD hud;
+
     void Start()
     {
         if (weaponList != null && weaponList.Length > 0)
         {
             EquipWeapon(0);
         }
+
+        hud = GetComponent<PlayerHUD>();
+        hud.UpdateAmmo(currentWeapon.currentAmmoInClip, currentWeapon.maxAmmoInClip);
+        Debug.Log("1");
     }
 
     void Update()
@@ -25,11 +31,13 @@ public class WeaponController : MonoBehaviour {
         {
             currentWeaponIndex = 1;
             EquipWeapon(currentWeaponIndex);
+            hud.UpdateAmmo(currentWeapon.currentAmmoInClip, currentWeapon.maxAmmoInClip);
         }
         else if (scroll < 0f)
         {
             currentWeaponIndex = 0;
             EquipWeapon(currentWeaponIndex);
+            hud.UpdateAmmo(currentWeapon.currentAmmoInClip, currentWeapon.maxAmmoInClip);
         }
     }
 
@@ -49,6 +57,8 @@ public class WeaponController : MonoBehaviour {
     public void FireWeapon()
     {
         currentWeapon.Shoot();
+        hud.UpdateAmmo(currentWeapon.currentAmmoInClip, currentWeapon.maxAmmoInClip);
+        Debug.Log("3");
     }
 
 }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(WeaponController))] 
+[RequireComponent(typeof(WeaponController))]
+
 public class Player : MonoBehaviour
 {
     #region variables
@@ -20,13 +21,17 @@ public class Player : MonoBehaviour
     private float gravity = 0f;
     private float verticalAngle = 0f;
     private Vector3 motion = Vector3.zero;
+
+    public PlayerHUD hud;
     #endregion
+
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         weaponController = GetComponent<WeaponController>();
         Cursor.lockState = CursorLockMode.Locked; //enlever la souris
+        hud = GetComponent<PlayerHUD>();
     }
 
     void Update()
@@ -41,6 +46,8 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             weaponController.currentWeapon.Reload();
+            hud.UpdateAmmo(weaponController.currentWeapon.currentAmmoInClip, weaponController.currentWeapon.maxAmmoInClip);
+            Debug.Log("4");
         }
 
         GetAimInfo();
@@ -126,7 +133,6 @@ public class Player : MonoBehaviour
         if(Physics.Raycast(ray, out hit, 100f))
         {
             Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
-            Debug.Log("Cible :" + hit.collider.name);
         }
     }
 }
