@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public float range = 100f;
     public float shotDelay = 0.2f;
     public float reloadTime = 2f;
+    public int damage = 5; 
     public Transform muzzlePoint;
     public Transform extractorPoint;
     public GameObject impactPrefab;
@@ -48,7 +49,7 @@ public class Weapon : MonoBehaviour
                 if (hittingEnemy(hit))
                 {
                     CharacterStats enemyStats = hit.transform.GetComponent<CharacterStats>();
-                    enemyStats.TakeDamage(3);
+                    enemyStats.TakeDamage(damage);
 
                     // Particule de sang
 

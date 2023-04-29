@@ -654,6 +654,7 @@ MonoBehaviour:
   range: 30
   shotDelay: 0.1
   reloadTime: 2
+  damage: 10
   muzzlePoint: {fileID: 3350826812789221429}
   extractorPoint: {fileID: 653778502894749366}
   impactPrefab: {fileID: 1404200745246544, guid: 068381675912eb044a912de01e17f9cd, type: 3}

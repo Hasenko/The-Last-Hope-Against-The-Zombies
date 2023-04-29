@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     private Vector3 motion = Vector3.zero;
 
     public PlayerHUD hud;
+
+    public AudioSource footStepSound, sprintSound;
     #endregion
 
 
@@ -51,6 +53,29 @@ public class Player : MonoBehaviour
         }
 
         GetAimInfo();
+
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                footStepSound.enabled = false;
+                sprintSound.enabled = true;
+
+            }
+            else
+            {
+                footStepSound.enabled = true;
+                sprintSound.enabled = false;
+            }
+            
+        }
+            
+        else
+        {
+            footStepSound.enabled = false;
+            sprintSound.enabled = false;
+        }
+
     }
 
     void FixedUpdate()
@@ -103,6 +128,7 @@ public class Player : MonoBehaviour
             if (Input.GetButton("Jump"))
             {
                 gravity = jumpPower;
+
             }
         }
 

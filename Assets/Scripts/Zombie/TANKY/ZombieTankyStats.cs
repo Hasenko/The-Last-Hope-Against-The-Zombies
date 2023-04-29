@@ -30,7 +30,7 @@ public class ZombieTankyStats : CharacterStats
     public override void InitVariables()
     {
         base.InitVariables();
-        maxHealth = 20;
+        maxHealth = 200;
         SetHealthTo(maxHealth);
         isDead = false;
 

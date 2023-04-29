@@ -29,7 +29,7 @@ public class ZombieRapideStats : CharacterStats
     public override void InitVariables()
     {
         base.InitVariables();
-        maxHealth = 7;
+        maxHealth = 30;
         SetHealthTo(maxHealth);
         isDead = false;
 

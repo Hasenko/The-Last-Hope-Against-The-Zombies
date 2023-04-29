@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ZombieNormalStats : CharacterStats
 {
@@ -10,13 +9,10 @@ public class ZombieNormalStats : CharacterStats
     [SerializeField] public float actualSpeed;
     [SerializeField] public float defaultSpeed;
 
-    private Animator anim;
-
 
     private void Start()
     {
         InitVariables();
-        GetReference();
     }
     public void DealDamage(CharacterStats statsToDamage)
     {
@@ -35,18 +31,14 @@ public class ZombieNormalStats : CharacterStats
     public override void InitVariables()
     {
         base.InitVariables();
-        maxHealth = 10;
+        maxHealth = 50;
         SetHealthTo(maxHealth);
         isDead = false;
 
         damage = 5;
         attackSpeed = 1.5f;
-        defaultSpeed = 2f;
+        defaultSpeed = 1.5f;
         actualSpeed = defaultSpeed;
-    }
-    private void GetReference()
-    {
-        anim = anim.GetComponent<Animator>();
     }
 
 }
