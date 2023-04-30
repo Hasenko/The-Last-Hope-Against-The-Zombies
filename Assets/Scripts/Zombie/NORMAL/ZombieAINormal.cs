@@ -12,7 +12,6 @@ public class ZombieAINormal : MonoBehaviour
     [SerializeField] private Transform target;
     private ZombieNormalStats stats = null;
     private Animator anim;
-    public float zombieViewRange = 15;
     private float timeOfLastAttack = 0;
     [SerializeField] private PlayerHUD hud;
     // Start is called before the first frame update
@@ -33,7 +32,7 @@ public class ZombieAINormal : MonoBehaviour
 
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
 
-        if (distanceToTarget <= zombieViewRange)
+        if (distanceToTarget <= stats.zombieViewRange)
         {
             zombie.SetDestination(target.position);
             stats.actualSpeed = stats.defaultSpeed;

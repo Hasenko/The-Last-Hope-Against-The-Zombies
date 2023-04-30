@@ -8,7 +8,7 @@ public class ZombieNormalStats : CharacterStats
     [SerializeField] public float attackSpeed;
     [SerializeField] public float actualSpeed;
     [SerializeField] public float defaultSpeed;
-
+    [SerializeField] public float zombieViewRange;
 
     private void Start()
     {
@@ -39,6 +39,7 @@ public class ZombieNormalStats : CharacterStats
         attackSpeed = 1.5f;
         defaultSpeed = 1.5f;
         actualSpeed = defaultSpeed;
+        zombieViewRange = 15;
     }
 
 }

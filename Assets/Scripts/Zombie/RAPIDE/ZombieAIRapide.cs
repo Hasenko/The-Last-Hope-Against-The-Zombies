@@ -12,7 +12,6 @@ public class ZombieAIRapide : MonoBehaviour
     [SerializeField] private Transform target;
     private ZombieRapideStats stats = null;
     Animator anim;
-    public float zombieViewRange = 20;
     private float timeOfLastAttack = 0;
     [SerializeField] private PlayerHUD hud;
     private bool waitToDie = false;
@@ -33,7 +32,7 @@ public class ZombieAIRapide : MonoBehaviour
 
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
 
-        if (distanceToTarget <= zombieViewRange)
+        if (distanceToTarget <= stats.zombieViewRange)
         {
             zombie.SetDestination(target.position);
             stats.actualSpeed = stats.defaultSpeed;

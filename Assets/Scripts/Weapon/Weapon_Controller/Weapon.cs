@@ -45,7 +45,7 @@ public class Weapon : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, range))
             {
-                // Si le joueur vise un zombie et tire
+                // Si le joueur vise un zombie ou le boss et tire
                 if (hittingEnemy(hit))
                 {
                     CharacterStats enemyStats = hit.transform.GetComponent<CharacterStats>();
@@ -67,8 +67,7 @@ public class Weapon : MonoBehaviour
             weaponFX.ShootFX();
             GameObject tmp = (GameObject)Instantiate(bulletCase, extractorPoint.position, extractorPoint.rotation);
             Rigidbody rb = tmp.GetComponent<Rigidbody>();
-            rb.AddForce(Vector3.forward * 3f);
-            rb.AddRelativeTorque(new Vector3(UnityEngine.Random.Range(0f, 90f), UnityEngine.Random.Range(0f, 90f), UnityEngine.Random.Range(0f, 90f)));
+            rb.AddForce(Vector3.forward * 20f);
             Destroy(tmp, 4f);
 
             currentAmmoInClip--;
@@ -78,7 +77,7 @@ public class Weapon : MonoBehaviour
 
     private bool hittingEnemy(RaycastHit hit)
     {
-        if (hit.transform.tag == "Enemy")
+        if (hit.transform.tag == "Enemy" || hit.transform.tag == "Boss")
             return true;
         return false;
     }
