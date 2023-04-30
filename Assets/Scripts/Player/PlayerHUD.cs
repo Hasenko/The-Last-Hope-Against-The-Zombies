@@ -10,6 +10,14 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private Text currentAmmoText;
     [SerializeField] private Text maxAmmoText;
 
+    [SerializeField] private Text cptNText;
+    [SerializeField] private Text cptRText;
+    [SerializeField] private Text cptTText;
+
+    private int cptN = 0;
+    private int cptR = 0;
+    private int cptT = 0;
+
     public void UpdateHealth(int currentHealth, int maxHealth)
     {
         currentHealthText.text = currentHealth.ToString();
@@ -22,4 +30,24 @@ public class PlayerHUD : MonoBehaviour
         maxAmmoText.text = maxAmmo.ToString();
     }
 
+    public void UpdateCptZombie(int cptToUptate)
+    {
+        switch (cptToUptate)
+        {
+            case 0:
+                cptN++;
+                cptNText.text = cptN.ToString();
+                break;
+
+            case 1:
+                cptR++;
+                cptRText.text = cptR.ToString();
+                break;
+
+            case 2:
+                cptT++;
+                cptTText.text = cptT.ToString();
+                break;
+        }
+    }
 }

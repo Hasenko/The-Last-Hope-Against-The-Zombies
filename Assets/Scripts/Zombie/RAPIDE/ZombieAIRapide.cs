@@ -14,6 +14,9 @@ public class ZombieAIRapide : MonoBehaviour
     Animator anim;
     public float zombieViewRange = 20;
     private float timeOfLastAttack = 0;
+    [SerializeField] private PlayerHUD hud;
+    private bool waitToDie = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -54,13 +57,27 @@ public class ZombieAIRapide : MonoBehaviour
             }
         }
 
-        if (ZombieRapideDead())
+        if (ZombieRapideDead() && !waitToDie)
         {
             zombie.speed = 0;
             anim.Play("die");
-            Debug.Log("Zombie rapide dead");
+            Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
+            hud.UpdateCptZombie(1);
+            waitToDie = true;
+        }
+        else if (ZombieRapideDead())
+        {
+            zombie.speed = 0;
+            anim.Play("die");
             Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
         }
+        if (gameObject == null)
+        {
+            zombie.speed = 0;
+            waitToDie = false;
+        }
+
+
 
         anim.SetFloat("Speed", stats.actualSpeed);
     }

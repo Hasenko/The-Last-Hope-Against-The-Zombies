@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         weaponController = GetComponent<WeaponController>();
-        Cursor.lockState = CursorLockMode.Locked; //enlever la souris
+        Cursor.lockState = CursorLockMode.Locked; //enlever la sourisx
         hud = GetComponent<PlayerHUD>();
     }
 
