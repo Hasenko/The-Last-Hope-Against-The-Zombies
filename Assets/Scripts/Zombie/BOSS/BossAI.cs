@@ -19,6 +19,8 @@ public class BossAI : MonoBehaviour
     private bool animSecPh = false;
     private bool animSecPh2 = false;
 
+    public AudioSource jump, roar;
+
     private void Start()
     {
         GetReference();
@@ -116,14 +118,14 @@ public class BossAI : MonoBehaviour
     {
         // Joue la première animation
         anim.Play("jump");
-
         // Attend la fin de la première animation
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(2);
 
+        jump.enabled = true;
         // Joue la deuxième animation
         anim.Play("roar");
-
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        roar.enabled = true;
+        yield return new WaitForSeconds(3);
         animSecPh = false;
         zombie.speed = stats.defaultSpeed;
         anim.Play("Movement");
