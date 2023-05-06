@@ -29,6 +29,8 @@ public class Weapon : MonoBehaviour
     private float timer = 0f;
     private WeaponFX weaponFX;
 
+    public AudioSource hitsound;
+
     private void Start()
     {
         timer = Time.time;
@@ -54,6 +56,10 @@ public class Weapon : MonoBehaviour
                     // Particule de sang
 
                     SpawnBloodParticules(hit.point, hit);
+
+                    // Son
+
+                    hitsound.Play(0);
                 }
                 else
                 {
