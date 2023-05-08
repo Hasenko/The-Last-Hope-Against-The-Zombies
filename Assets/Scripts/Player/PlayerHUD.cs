@@ -14,6 +14,8 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private Text cptRText;
     [SerializeField] private Text cptTText;
 
+    [SerializeField] private Text HealText;
+
     private int cptN = 0;
     private int cptR = 0;
     private int cptT = 0;
@@ -48,6 +50,18 @@ public class PlayerHUD : MonoBehaviour
                 cptT++;
                 cptTText.text = cptT.ToString();
                 break;
+        }
+    }
+
+    public void UpdateHeal(bool ready)
+    {
+        if(ready)
+        {
+            HealText.text = "Soin prêt";
+        }
+        else
+        {
+            HealText.text = "";
         }
     }
 }

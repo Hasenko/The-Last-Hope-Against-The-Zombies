@@ -33,7 +33,7 @@ public class PlayerStats : CharacterStats
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) // TEST A RETIRER
+        if (Input.GetKeyDown(KeyCode.Y)) // TEST A RETIRER
         {
             TakeDamage(10);
         }
