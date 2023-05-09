@@ -3360,6 +3360,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   isDead: 0
+  boss: {fileID: 1131597182}
 --- !u!114 &237753002
 MonoBehaviour:
   m_ObjectHideFlags: 0

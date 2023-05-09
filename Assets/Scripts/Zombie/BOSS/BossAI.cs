@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 
 public class BossAI : MonoBehaviour
@@ -19,6 +20,7 @@ public class BossAI : MonoBehaviour
     private bool animSecPh = false;
     private bool animSecPh2 = false;
 
+    private bool canLoadScene = false;
     public AudioSource jump, roar;
 
     private void Start()
@@ -69,6 +71,7 @@ public class BossAI : MonoBehaviour
             anim.Play("die");
             Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
             waitToDie = true;
+            canLoadScene = true;
         }
         else if (BossDead())
         {
@@ -85,6 +88,12 @@ public class BossAI : MonoBehaviour
         anim.SetFloat("Speed", stats.actualSpeed);
     }
 
+    public bool NeedToLoadWinScene()
+    {
+        if (canLoadScene)
+            return true;
+        return false;
+    }
     private void AttackTarget(CharacterStats statsToDamage)
     {
         anim.SetTrigger("attack");
