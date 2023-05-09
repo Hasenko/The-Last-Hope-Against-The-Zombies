@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : CharacterStats
 {
     private PlayerHUD hud;
+    public BossAI boss;
 
     private void Start()
     {
@@ -42,5 +43,18 @@ public class PlayerStats : CharacterStats
         {
             Heal(10);
         }
+
+        if (boss.NeedToLoadWinScene())
+        {
+            StartCoroutine(LoadLevelAfterDelay(5));
+        }
+            
+    }
+
+    IEnumerator LoadLevelAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("win menu", LoadSceneMode.Single);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }
