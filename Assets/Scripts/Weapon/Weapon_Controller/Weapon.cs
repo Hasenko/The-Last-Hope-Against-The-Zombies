@@ -58,8 +58,8 @@ public class Weapon : MonoBehaviour
                     SpawnBloodParticules(hit.point, hit);
 
                     // Son
-
-                    hitsound.Play(0);
+                    if (!hitsound.isPlaying)
+                        hitsound.Play(0);
                 }
                 else
                 {

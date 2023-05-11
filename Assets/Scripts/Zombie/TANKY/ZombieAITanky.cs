@@ -16,6 +16,8 @@ public class ZombieAITanky : MonoBehaviour
     [SerializeField] private PlayerHUD hud;
     // Start is called before the first frame update
     private bool waitToDie = false;
+
+    public AudioSource dyingSound, playerInRange, playerHit;
     private void Start()
     {
         GetReference();
@@ -41,6 +43,7 @@ public class ZombieAITanky : MonoBehaviour
         {
             stats.actualSpeed = 0f;
             zombie.speed = stats.actualSpeed;
+            playerInRange.Play();
         }
         if (distanceToTarget - 0.128 <= zombie.stoppingDistance)
         {
@@ -52,6 +55,8 @@ public class ZombieAITanky : MonoBehaviour
                 timeOfLastAttack = Time.time;
                 CharacterStats targetStats = target.GetComponent<CharacterStats>();
                 AttackTarget(targetStats);
+                if (!playerHit.isPlaying)
+                    playerHit.Play();
             }
         }
 
@@ -59,6 +64,7 @@ public class ZombieAITanky : MonoBehaviour
         {
             zombie.speed = 0;
             anim.Play("die");
+            dyingSound.Play();
             Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
             hud.UpdateCptZombie(2);
             waitToDie = true;

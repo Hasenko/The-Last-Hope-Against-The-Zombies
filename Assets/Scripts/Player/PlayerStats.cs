@@ -46,7 +46,7 @@ public class PlayerStats : CharacterStats
 
         if (boss.NeedToLoadWinScene())
         {
-            StartCoroutine(LoadLevelAfterDelay(5));
+            StartCoroutine(LoadLevelAfterDelay(8));
         }
             
     }

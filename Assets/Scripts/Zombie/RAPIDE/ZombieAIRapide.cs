@@ -16,6 +16,7 @@ public class ZombieAIRapide : MonoBehaviour
     [SerializeField] private PlayerHUD hud;
     private bool waitToDie = false;
 
+    public AudioSource dyingSound, playerInRange, playerHit;
     // Start is called before the first frame update
     private void Start()
     {
@@ -42,6 +43,7 @@ public class ZombieAIRapide : MonoBehaviour
         {
             stats.actualSpeed = 0f;
             zombie.speed = stats.actualSpeed;
+            playerInRange.Play();
         }
         if (distanceToTarget <= zombie.stoppingDistance)
         {
@@ -53,6 +55,8 @@ public class ZombieAIRapide : MonoBehaviour
                 timeOfLastAttack = Time.time;
                 CharacterStats targetStats = target.GetComponent<CharacterStats>();
                 AttackTarget(targetStats);
+                if (!playerHit.isPlaying)
+                    playerHit.Play();
             }
         }
 
@@ -60,6 +64,7 @@ public class ZombieAIRapide : MonoBehaviour
         {
             zombie.speed = 0;
             anim.Play("die");
+            dyingSound.Play();
             Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
             hud.UpdateCptZombie(1);
             waitToDie = true;

@@ -19,9 +19,10 @@ public class BossAI : MonoBehaviour
     private bool waitToDie = false;
     private bool animSecPh = false;
     private bool animSecPh2 = false;
+    private bool playerCome = false;
 
     private bool canLoadScene = false;
-    public AudioSource jump, roar;
+    public AudioSource jump, roar, playerInRange, RoiZombieHit, dyingSound;
 
     private void Start()
     {
@@ -37,22 +38,27 @@ public class BossAI : MonoBehaviour
     {
 
         float distanceToTarget = Vector3.Distance(target.position, transform.position);
-        if(stats.GetHealthBoss() <= 1000 && !animSecPh && !animSecPh2)
+        if(stats.GetHealthBoss() <= 1000 && !animSecPh && !animSecPh2  && !waitToDie) // Si le boss a 1000 hp ou moins
         {
             SecondePhase();
         }
-        if (distanceToTarget <= stats.zombieViewRange && !animSecPh)
+        if (distanceToTarget <= stats.zombieViewRange && !animSecPh && !waitToDie) // Si le joueur est dans la range du boss
         {
             zombie.SetDestination(target.position);
             stats.actualSpeed = stats.defaultSpeed;
             zombie.speed = stats.actualSpeed;
+            if (!playerCome) // Si le joueur entre pour la première fois dans la range du boss
+            {
+                playerInRange.enabled = true;
+                playerCome = true;
+            }
         }
-        else if (!animSecPh)
+        else if (!animSecPh && !waitToDie) // Si le boss est entrain de faire son animation de la seconde phase
         {
             stats.actualSpeed = 0f;
             zombie.speed = stats.actualSpeed;
         }
-        if (distanceToTarget <= zombie.stoppingDistance && !animSecPh)
+        if (distanceToTarget <= zombie.stoppingDistance && !animSecPh && !waitToDie) // Si le joueur est dans la range d'attaque du boss
         {
             stats.actualSpeed = 0f;
             zombie.speed = stats.actualSpeed;
@@ -62,6 +68,7 @@ public class BossAI : MonoBehaviour
                 timeOfLastAttack = Time.time;
                 CharacterStats targetStats = target.GetComponent<CharacterStats>();
                 AttackTarget(targetStats);
+                StartCoroutine(HittingSound());
             }
         }
 
@@ -69,20 +76,10 @@ public class BossAI : MonoBehaviour
         {
             zombie.speed = 0;
             anim.Play("die");
-            Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
+            dyingSound.enabled = true;
             waitToDie = true;
             canLoadScene = true;
-        }
-        else if (BossDead())
-        {
-            zombie.speed = 0;
-            anim.Play("die");
-            Destroy(gameObject, anim.GetCurrentAnimatorStateInfo(0).length);
-        }
-        if (gameObject == null)
-        {
-            zombie.speed = 0;
-            waitToDie = false;
+            StartCoroutine(WaitDieAnim());
         }
 
         anim.SetFloat("Speed", stats.actualSpeed);
@@ -140,4 +137,15 @@ public class BossAI : MonoBehaviour
         anim.Play("Movement");
     }
 
+    IEnumerator HittingSound()
+    {
+        yield return new WaitForSeconds(2);
+        RoiZombieHit.Play();
+    }
+
+    IEnumerator WaitDieAnim()
+    {
+        yield return new WaitForSeconds(8);
+        Destroy(gameObject);
+    }
 }
