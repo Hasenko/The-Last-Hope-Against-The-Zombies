@@ -17,7 +17,7 @@ public class ZombieAITanky : MonoBehaviour
     // Start is called before the first frame update
     private bool waitToDie = false;
 
-    public AudioSource dyingSound, playerInRange, playerHit;
+    public AudioSource dyingSound, playerHit;
     private void Start()
     {
         GetReference();
@@ -43,7 +43,6 @@ public class ZombieAITanky : MonoBehaviour
         {
             stats.actualSpeed = 0f;
             zombie.speed = stats.actualSpeed;
-            playerInRange.Play();
         }
         if (distanceToTarget - 0.128 <= zombie.stoppingDistance)
         {

@@ -12,6 +12,8 @@ public class WeaponController : MonoBehaviour
 
     public List<GameObject> inventory = new List<GameObject>();
 
+    public AudioSource pickHealSound, useHealSound;
+
     void Start()
     {
         if (weaponList != null && weaponList.Length > 0)
@@ -83,6 +85,7 @@ public class WeaponController : MonoBehaviour
                 Debug.Log("Healing item picked up and added to inventory.");
                 healingItem.GetComponent<MeshRenderer>().enabled = false; // désactiver le MeshRenderer
                 hud.UpdateHeal(true);
+                pickHealSound.Play();
             }
         }
     }
@@ -103,7 +106,7 @@ public class WeaponController : MonoBehaviour
 
             HealingItem itemScript = healingItem.GetComponent<HealingItem>();
             GetComponent<CharacterStats>().Heal(itemScript.healingAmount);
-
+            useHealSound.Play();
             // Retirer l'objet de soin de la liste avant de le détruire
             inventory.RemoveAt(0);
             hud.UpdateHeal(false);

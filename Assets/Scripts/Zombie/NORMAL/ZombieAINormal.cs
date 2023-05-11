@@ -15,7 +15,7 @@ public class ZombieAINormal : MonoBehaviour
     private float timeOfLastAttack = 0;
     [SerializeField] private PlayerHUD hud;
 
-    public AudioSource dyingSound, playerInRange, playerHit;
+    public AudioSource dyingSound, playerHit;
     // Start is called before the first frame update
 
     private bool waitToDie = false;
@@ -44,7 +44,6 @@ public class ZombieAINormal : MonoBehaviour
         {
             stats.actualSpeed = 0f;
             zombie.speed = stats.actualSpeed;
-            playerInRange.Play();
         }
         if (distanceToTarget <= zombie.stoppingDistance)
         {

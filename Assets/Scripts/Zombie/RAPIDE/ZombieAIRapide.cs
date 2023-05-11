@@ -16,7 +16,7 @@ public class ZombieAIRapide : MonoBehaviour
     [SerializeField] private PlayerHUD hud;
     private bool waitToDie = false;
 
-    public AudioSource dyingSound, playerInRange, playerHit;
+    public AudioSource dyingSound, playerHit;
     // Start is called before the first frame update
     private void Start()
     {
@@ -43,7 +43,6 @@ public class ZombieAIRapide : MonoBehaviour
         {
             stats.actualSpeed = 0f;
             zombie.speed = stats.actualSpeed;
-            playerInRange.Play();
         }
         if (distanceToTarget <= zombie.stoppingDistance)
         {
